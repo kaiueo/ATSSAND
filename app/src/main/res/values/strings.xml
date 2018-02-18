@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ATSS</string>
+    <string name="title_summary">摘要</string>
+    <string name="title_upload">上传</string>
+    <string name="title_self">个人</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
