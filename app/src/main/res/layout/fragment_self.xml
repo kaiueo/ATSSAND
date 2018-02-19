@@ -1,13 +1,103 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.kaiueo.atss.SelfFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="sdfsfsdf" />
+        android:background="@android:color/background_light">
 
+        <ImageView
+            android:id="@+id/avatar_imageview"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="435dp"
+            android:layout_marginEnd="162dp"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/username_label"
+            android:layout_width="0dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="4dp"
+            android:text="username"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatar_imageview" />
+
+        <TextView
+            android:id="@+id/create_label"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="4dp"
+            android:text="created_time"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_label" />
+
+        <TextView
+            android:id="@+id/seperator1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorSeperator"
+            android:text="用户信息"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_label" />
+
+        <TextView
+            android:id="@+id/use_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="  用量：0/10"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seperator1" />
+
+        <TextView
+            android:id="@+id/seperator2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorSeperator"
+            android:text="个人简介"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/use_label" />
+
+        <TextView
+            android:id="@+id/biography_label"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="I’ve managed to make something I could call my own world, over time, little by little. And when I’m inside it, I feel kind of relieved."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seperator2" />
+
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>

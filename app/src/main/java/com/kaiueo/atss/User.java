@@ -5,15 +5,16 @@ package com.kaiueo.atss;
  */
 
 public class User {
-    private int code;
-    private String msg;
-    private Content data;
-    private static class Content{
-        private String username;
-        private String created_at;
-        private int uploads;
-        private String avatar;
-        private int use;
+    public int code;
+    public String msg;
+    public Content data;
+    public static class Content{
+        public String username;
+        public String created_at;
+        public int uploads;
+        public String avatar;
+        public int use;
+        public String biography;
     }
 
     public void show(){
@@ -24,6 +25,7 @@ public class User {
         System.out.println(data.uploads);
         System.out.println(data.avatar);
         System.out.println(data.use);
+        System.out.println(data.biography);
 
     }
 }

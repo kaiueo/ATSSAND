@@ -27,14 +27,16 @@ public class NetworkHelper {
             .baseUrl("http://10.0.2.2:5000/") // 设置 网络请求 Url
             .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
             .build();
-    public static void getUserDetail() {
-        GetUserDetail_interface request = retrofit.create(GetUserDetail_interface.class);
+    public static void getUserDetail(final SelfFragment fragment) {
+        final GetUserDetail_interface request = retrofit.create(GetUserDetail_interface.class);
         Call<User> call = request.getCall(getBaseAuth());
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 System.out.print("chenggong");
-                response.body().show();
+                User user = response.body();
+                fragment.change(user);
+
 
             }
 
