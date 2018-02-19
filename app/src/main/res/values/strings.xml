@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">ATSS</string>
-    <string name="title_summary">摘要</string>
-    <string name="title_upload">上传</string>
-    <string name="title_self">个人</string>
+    <string name="summary_url">从URL</string>
+    <string name="summary_text">从文本</string>
+    <string name="summary_clear">清空</string>
+    <string name="upload_origin">查看原文</string>
+    <string name="upload_upload">上传</string>
+    <string name="navigation_summary">摘要</string>
+    <string name="navigation_upload">上传</string>
+    <string name="navigation_self">个人</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

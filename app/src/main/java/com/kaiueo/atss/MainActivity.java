@@ -77,8 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager){
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(SelfFragment.newInstance("aaa", "bbb"));
+        //adapter.addFragment(SelfFragment.newInstance("aaa", "bbb"));
         adapter.addFragment(SummaryFragment.newInstance("vvv", "ssd"));
+        adapter.addFragment(UploadFragment.newInstance("aaa", "bbb"));
         adapter.addFragment(SelfFragment.newInstance("sfs", "sdsf"));
         viewPager.setAdapter(adapter);
 

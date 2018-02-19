@@ -1,9 +1,13 @@
 package com.kaiueo.atss;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -53,6 +57,7 @@ public class UploadFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -62,4 +67,21 @@ public class UploadFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_upload, container, false);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.upload_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.upload_show_origin:
+                Intent intent = new Intent(this.getActivity(), OriginActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return false;
+        }
+    }
 }
