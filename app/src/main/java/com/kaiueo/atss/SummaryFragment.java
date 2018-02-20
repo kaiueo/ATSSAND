@@ -1,7 +1,9 @@
 package com.kaiueo.atss;
 
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +12,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.zyao89.view.zloading.ZLoadingDialog;
+import com.zyao89.view.zloading.Z_TYPE;
 
 
 /**
@@ -26,6 +35,12 @@ public class SummaryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    public EditText articleOrUrlTextview;
+    public SummarizedArticle summarizedArticle;
+    public SeekBar countBar;
+    public ZLoadingDialog zLoadingDialog;
+    public Dialog dialog;
 
 
     public SummaryFragment() {
@@ -64,7 +79,13 @@ public class SummaryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_summary, container, false);
+        View view = inflater.inflate(R.layout.fragment_summary, container, false);
+        articleOrUrlTextview = (EditText) view.findViewById(R.id.url_or_article);
+        countBar = (SeekBar) view.findViewById(R.id.count_seekBar);
+        zLoadingDialog = new ZLoadingDialog(getActivity());
+        zLoadingDialog.setLoadingBuilder(Z_TYPE.STAR_LOADING).setLoadingColor(Color.BLACK).setHintText("Loading...");
+
+        return view;
     }
 
     @Override
@@ -77,11 +98,47 @@ public class SummaryFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.summary_url:
-                Intent intent = new Intent(this.getActivity(), EditActivity.class);
-                startActivity(intent);
+                //SummaryResultActivity.actionStart(getActivity(), "asdadad\nadadasd\n");
+                dialog = zLoadingDialog.show();
+                getSummarizationFromUrl();
                 return true;
+            case R.id.summary_text:
+                dialog = zLoadingDialog.show();
+                getSummarizationFromText();
+                return true;
+            case R.id.summary_clear:
+                articleOrUrlTextview.setText("");
             default:
                 return false;
         }
+    }
+
+    public void getSummarizationFromUrl(){
+        String url = articleOrUrlTextview.getText().toString();
+        NetworkHelper.getSummaryFromUrl(this, url, countBar.getProgress());
+    }
+
+    public void getSummarizationFromText(){
+        String text = articleOrUrlTextview.getText().toString();
+        NetworkHelper.getSummaryFromText(this, text, countBar.getProgress());
+    }
+
+    public void showResult(){
+
+        if(summarizedArticle==null){
+            Toast.makeText(getActivity(), "请检查网络连接", Toast.LENGTH_LONG).show();
+        }else if(summarizedArticle.code!=0){
+            Toast.makeText(getActivity(), summarizedArticle.msg, Toast.LENGTH_LONG).show();
+        }else{
+
+            String summarization = "";
+            for (String summary :
+                    summarizedArticle.data.summary) {
+                summarization = summarization + summary + "\n";
+
+            }
+            SummaryResultActivity.actionStart(getActivity(), summarization);
+        }
+
     }
 }

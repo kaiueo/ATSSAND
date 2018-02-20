@@ -7,9 +7,9 @@ import java.util.List;
  */
 
 public class UploadResult {
-    private int code;
-    private String msg;
-    private List<String> data;
+    public int code;
+    public String msg;
+    public List<String> data;
 
     public void show(){
         System.out.println(code);

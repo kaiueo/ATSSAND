@@ -51,13 +51,15 @@ public class NetworkHelper {
 
     }
 
-    public static void getUnsummarizedArticle() {
+    public static void getUnsummarizedArticle(final UploadFragment fragment) {
         GetUnsummarizedArticle_interface request = retrofit.create(GetUnsummarizedArticle_interface.class);
         Call<UnsummarizedArticle> call = request.getCall();
         call.enqueue(new Callback<UnsummarizedArticle>() {
             @Override
             public void onResponse(Call<UnsummarizedArticle> call, Response<UnsummarizedArticle> response) {
-                response.body().show();
+                fragment.unsummarizedArticle = response.body();
+                fragment.dialog.hide();
+                fragment.showOrigin();
             }
 
             @Override
@@ -70,57 +72,69 @@ public class NetworkHelper {
 
     }
 
-    public static void getSummaryFromUrl(String url, int count) {
+    public static void getSummaryFromUrl(final SummaryFragment fragment, String url, int count) {
         GetSummaryFromUrl_interface request = retrofit.create(GetSummaryFromUrl_interface.class);
         PostSummayFromUrl post = new PostSummayFromUrl(1, url, count);
         Call<SummarizedArticle> call = request.getCall(getBaseAuth(), post);
         call.enqueue(new Callback<SummarizedArticle>() {
             @Override
             public void onResponse(Call<SummarizedArticle> call, Response<SummarizedArticle> response) {
-                response.body().show();
+                fragment.summarizedArticle = response.body();
+                fragment.dialog.hide();
+                fragment.showResult();
             }
 
             @Override
             public void onFailure(Call<SummarizedArticle> call, Throwable t) {
-                System.out.println("asdadasd");
+                fragment.summarizedArticle = null;
+                fragment.dialog.hide();
+                fragment.showResult();
                 t.printStackTrace();
                 System.out.print(t.getMessage());
             }
         });
     }
 
-    public static void getSummaryFromText(String text, int count) {
+    public static void getSummaryFromText(final SummaryFragment fragment, String text, int count) {
         GetSummaryFromText_interface request = retrofit.create(GetSummaryFromText_interface.class);
         PostSummaryFromText post = new PostSummaryFromText(0, text, count);
         Call<SummarizedArticle> call = request.getCall(getBaseAuth(), post);
         call.enqueue(new Callback<SummarizedArticle>() {
             @Override
             public void onResponse(Call<SummarizedArticle> call, Response<SummarizedArticle> response) {
-                response.body().show();
+                fragment.summarizedArticle = response.body();
+                fragment.dialog.hide();
+                fragment.showResult();
             }
 
             @Override
             public void onFailure(Call<SummarizedArticle> call, Throwable t) {
-                System.out.println("asdadasd");
+                fragment.summarizedArticle = null;
+                fragment.dialog.hide();
+                fragment.showResult();
                 t.printStackTrace();
                 System.out.print(t.getMessage());
             }
         });
     }
 
-    public static void uploadSummary(String id, String text, String summarization) {
+    public static void uploadSummary(final UploadFragment fragment, String id, String text, String summarization) {
         UploadSummarization_interface request = retrofit.create(UploadSummarization_interface.class);
         PostUpload post = new PostUpload(id, text, summarization);
         Call<UploadResult> call = request.getCall(getBaseAuth(), post);
         call.enqueue(new Callback<UploadResult>() {
             @Override
             public void onResponse(Call<UploadResult> call, Response<UploadResult> response) {
-                response.body().show();
+                fragment.uploadResult = response.body();
+                fragment.dialog.hide();
+                fragment.showResult();
             }
 
             @Override
             public void onFailure(Call<UploadResult> call, Throwable t) {
-                System.out.println("asdadasd");
+                fragment.uploadResult = null;
+                fragment.dialog.hide();
+                fragment.showResult();
                 t.printStackTrace();
                 System.out.print(t.getMessage());
             }

@@ -7,6 +7,16 @@
         android:title="@string/upload_origin" />
 
     <item
+        android:id="@+id/upload_refresh"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/upload_refresh" />
+    <item
+        android:id="@+id/upload_empty"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/upload_empty" />
+
+
+    <item
         android:id="@+id/upload_upload"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/upload_upload" />

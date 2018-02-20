@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".OriginActivity" />
-        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".EditActivity" />
+        <activity android:name=".SummaryResultActivity"></activity>
     </application>
 
 </manifest>

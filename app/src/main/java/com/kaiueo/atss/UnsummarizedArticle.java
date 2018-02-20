@@ -8,10 +8,10 @@ public class UnsummarizedArticle {
 
     private int code;
     private String msg;
-    private Content data;
-    private static class Content{
-        private String id;
-        private String text;
+    public Content data;
+    public static class Content{
+        public String id;
+        public String text;
 
     }
 

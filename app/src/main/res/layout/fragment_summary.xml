@@ -1,13 +1,72 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.kaiueo.atss.SummaryFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="11111" />
+        android:background="@android:color/background_light">
 
+        <EditText
+            android:id="@+id/url_or_article"
+            android:layout_width="337dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/background_light"
+            android:ems="10"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SeekBar
+            android:id="@+id/count_seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:max="12"
+            android:progress="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/url_or_article" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:text="0"
+            app:layout_constraintBottom_toTopOf="@+id/count_seekBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/url_or_article" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:text="12"
+            app:layout_constraintBottom_toTopOf="@+id/count_seekBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/url_or_article" />
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>

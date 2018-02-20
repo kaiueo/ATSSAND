@@ -2,6 +2,8 @@ package com.kaiueo.atss;
 
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Trace;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.net.URI;
+import java.net.URL;
 
 
 /**
@@ -76,6 +81,14 @@ public class SelfFragment extends Fragment {
         createLabel.setText(user.data.created_at);
         useLabel.setText(getRemain(user.data.use, user.data.uploads));
         bioLabel.setText(user.data.biography);
+        try {
+            URL thumb_u = new URL("http://avatar.csdn.net/9/7/1/3_u012482178.jpg");
+            Drawable thumb_d = Drawable.createFromStream(thumb_u.openStream(), "src");
+            avatarImageView.setImageDrawable(thumb_d);
+        }
+        catch (Exception e) {
+            // handle it
+        }
     }
 
     public String getRemain(int use, int uploads){

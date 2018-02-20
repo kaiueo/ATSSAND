@@ -5,6 +5,8 @@
     <string name="summary_clear">清空</string>
     <string name="upload_origin">查看原文</string>
     <string name="upload_upload">上传</string>
+    <string name="upload_refresh">刷新</string>
+    <string name="upload_empty">清空</string>
     <string name="navigation_summary">摘要</string>
     <string name="navigation_upload">上传</string>
     <string name="navigation_self">个人</string>

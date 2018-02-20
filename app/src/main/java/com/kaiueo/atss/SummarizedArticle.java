@@ -7,12 +7,12 @@ import java.util.List;
  */
 
 public class SummarizedArticle {
-    private int code;
-    private String msg;
-    private Content data;
-    private static class Content{
-        private String article;
-        private List<String> summary;
+    public int code;
+    public String msg;
+    public Content data;
+    public static class Content{
+        public String article;
+        public List<String> summary;
     }
 
     public void show(){
