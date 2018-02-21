@@ -1,5 +1,7 @@
 package com.kaiueo.atss;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -83,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(SelfFragment.newInstance("sfs", "sdsf"));
         viewPager.setAdapter(adapter);
 
+    }
+
+    public static void actionStart(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
     }
 
     @Override

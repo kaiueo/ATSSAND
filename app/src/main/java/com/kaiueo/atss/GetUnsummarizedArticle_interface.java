@@ -6,10 +6,11 @@ package com.kaiueo.atss;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 
 
 public interface GetUnsummarizedArticle_interface {
 
     @GET("api/v1/article/get")
-    Call<UnsummarizedArticle> getCall();
+    Call<UnsummarizedArticle> getCall(@Header("Authorization") String auth);
 }

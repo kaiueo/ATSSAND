@@ -53,7 +53,7 @@ public class NetworkHelper {
 
     public static void getUnsummarizedArticle(final UploadFragment fragment) {
         GetUnsummarizedArticle_interface request = retrofit.create(GetUnsummarizedArticle_interface.class);
-        Call<UnsummarizedArticle> call = request.getCall();
+        Call<UnsummarizedArticle> call = request.getCall(getBaseAuth());
         call.enqueue(new Callback<UnsummarizedArticle>() {
             @Override
             public void onResponse(Call<UnsummarizedArticle> call, Response<UnsummarizedArticle> response) {
@@ -139,6 +139,29 @@ public class NetworkHelper {
                 System.out.print(t.getMessage());
             }
         });
+    }
+
+    public static void getToken(final LoginActivity activity, final String username, final String password){
+        final GetToken_interface request = retrofit.create(GetToken_interface.class);
+        NetworkHelper.user = username;
+        NetworkHelper.password = password;
+        Call<Token> call = request.getCall(getBaseAuth());
+        call.enqueue(new Callback<Token>() {
+            @Override
+            public void onResponse(Call<Token> call, Response<Token> response) {
+                activity.loginCode = response.code();
+                activity.login(username, password);
+                System.out.println(response.code());
+
+            }
+
+            @Override
+            public void onFailure(Call<Token> call, Throwable t) {
+                activity.loginCode = 0;
+                activity.login(username, password);
+            }
+        });
+
     }
 
 

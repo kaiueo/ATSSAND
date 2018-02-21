@@ -2,6 +2,10 @@ package com.kaiueo.atss;
 
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,10 +14,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.zyao89.view.zloading.ZLoadingDialog;
+import com.zyao89.view.zloading.Z_TYPE;
 
 import java.net.URI;
 import java.net.URL;
@@ -39,6 +47,9 @@ public class SelfFragment extends Fragment {
     private TextView createLabel;
     private TextView useLabel;
     private TextView bioLabel;
+
+    public ZLoadingDialog zLoadingDialog;
+    public Dialog dialog;
 
 
     public SelfFragment() {
@@ -70,6 +81,12 @@ public class SelfFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        zLoadingDialog = new ZLoadingDialog(getActivity());
+        zLoadingDialog.setLoadingBuilder(Z_TYPE.STAR_LOADING).setLoadingColor(Color.BLACK).setHintText("Loading...");
+        dialog = zLoadingDialog.show();
+
+
         setHasOptionsMenu(true);
 
 
@@ -77,6 +94,9 @@ public class SelfFragment extends Fragment {
 
     public void change(User user){
         //System.out.print("asdsad\n");
+        if(dialog!=null){
+            dialog.hide();
+        }
         usernameLabel.setText(user.data.username);
         createLabel.setText(user.data.created_at);
         useLabel.setText(getRemain(user.data.use, user.data.uploads));
@@ -113,8 +133,28 @@ public class SelfFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        //inflater.inflate(R.menu.upload_menu, menu);
+        inflater.inflate(R.menu.self_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.self_refresh:
+                dialog = zLoadingDialog.show();
+                NetworkHelper.getUserDetail(this);
+                return true;
+            case R.id.self_logout:
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("pwd", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                getActivity().finish();
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
