@@ -125,7 +125,17 @@ public class UploadFragment extends Fragment {
     }
 
     public void showOrigin(){
-        OriginActivity.actionStart(getActivity(), unsummarizedArticle.data.text);
+
+        if(unsummarizedArticle.code==0){
+            OriginActivity.actionStart(getActivity(), unsummarizedArticle.data.text);
+        }else if(unsummarizedArticle.code==1){
+            Toast.makeText(getActivity(), "JSON格式错误", Toast.LENGTH_LONG).show();
+        }else if(unsummarizedArticle.code==3){
+            Toast.makeText(getActivity(), "暂无文章，请稍后再试", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getActivity(), "未知错误，请稍后再试", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
@@ -136,6 +146,7 @@ public class UploadFragment extends Fragment {
     }
 
     public void upload(){
+        dialog = zLoadingDialog.show();
         NetworkHelper.uploadSummary(this, unsummarizedArticle.data.id, unsummarizedArticle.data.text, summarizationTexrView.getText().toString());
     }
 

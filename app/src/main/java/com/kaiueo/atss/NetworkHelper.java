@@ -65,6 +65,7 @@ public class NetworkHelper {
             @Override
             public void onFailure(Call<UnsummarizedArticle> call, Throwable t) {
                 System.out.println("asdadasd");
+                fragment.dialog.hide();
                 t.printStackTrace();
                 System.out.print(t.getMessage());
             }

@@ -6,8 +6,8 @@ package com.kaiueo.atss;
 
 public class UnsummarizedArticle {
 
-    private int code;
-    private String msg;
+    public int code;
+    public String msg;
     public Content data;
     public static class Content{
         public String id;
